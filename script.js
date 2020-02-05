@@ -1,7 +1,27 @@
+window.addEventListener("DOMContentLoaded", showData);
 
-function init();
-console.log(studentList)
+function showData() {
+  fetch("students1991.json")
+    .then(res => res.json())
+    .then(handleData);
+}
 
-function showStudentsList (students) {
-    console.log(students);
+function handleData(showAll) {
+  console.log(showAll);
+  //1. loop array
+  showAll.forEach(showStudents);
+}
+
+function showStudents(student) {
+  console.log(student);
+  //1. clone template
+  const template = document.querySelector(".templateMain").content;
+  const studentCopy = template.cloneNode(true);
+
+  //2.grab content
+  const oneName = studentCopy.querySelector(".studentsName");
+  oneName.textContent = student.fullname;
+
+  //3.append
+  document.querySelector("#studentsMain").appendChild(studentCopy);
 }
