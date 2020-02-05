@@ -22,12 +22,25 @@ function showStudents(student) {
   const oneName = studentCopy.querySelector(".studentsName");
   oneName.textContent = student.fullname;
 
+  const house = studentCopy.querySelector(".houseName");
+  house.textContent = student.house;
+
+  studentCopy.querySelector("button").addEventListener("click", showDetails);
+
   //3.append
   document.querySelector("#studentsMain").appendChild(studentCopy);
 }
 
-// When the user clicks on <div>, open the popup
-function myFunction() {
-  var popup = document.getElementById("myPopup");
-  popup.classList.toggle("show");
+function showDetails(student) {
+  //close the modal when clicked
+
+  const modal = document.querySelector(".modal-background");
+  modal.addEventListener("click", () => {
+    modal.classList.add("hide");
+  });
+
+  console.log(student);
+  modal.querySelector(".modal-name").content = student.fullname;
+  modal.querySelector(".modal-house").content = student.house;
+  modal.classList.remove("hide");
 }

@@ -3,25 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style src="style.css"></style>
     <title>Hogwarts students</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
+
+    <main>
     <h1>Hogwarts students</h1>
     <section id="studentsMain">
       <template class="templateMain">
         <article>
           <h1>title here</h1>
           <p class="studentsName">name here</p>
-
-          <div class="popup" onclick="myFunction()">
-            Click me!
-            <span class="popuptext" id="myPopup">Popup text...</span>
-          </div>
+          
+          <p class="houseName">house here</p>
+        <button>More</button>
         </article>
       </template>
     </section>
 
     <script src="script.js"></script>
   </body>
+
+</main>
+
+<!-- modal -->
+<div class="modal-background hide">
+<div class="modal-content">
+<h3 class="modal-name">name</h3>
+<img src="" alt="" class="modal-image">
+<p class="modal-house">house name</p>
+</div>
+
+</div>
+
 </html>
