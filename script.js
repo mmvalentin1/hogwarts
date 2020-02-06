@@ -7,13 +7,13 @@ function showData() {
 }
 
 function handleData(showAll) {
-  console.log(showAll);
+  //console.log(showAll);
   //1. loop array
   showAll.forEach(showStudents);
 }
 
 function showStudents(student) {
-  console.log(student);
+  //console.log(student);
   //1. clone template
   const template = document.querySelector(".templateMain").content;
   const studentCopy = template.cloneNode(true);
