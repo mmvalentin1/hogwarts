@@ -11,7 +11,15 @@ function handleData(showAll) {
   //1. loop array
   showAll.forEach(showStudents);
   console.log(showAll)
+  document.querySelector("select#theme").addEventListener("change", selectTheme);
   closeModal();
+}
+
+function selectTheme(){
+  
+    document.querySelector("body").setAttribute("houseStyle", this.value);
+    console.log(selectTheme)
+
 }
 
 function showStudents(student) {

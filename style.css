@@ -1,3 +1,46 @@
+:root {
+  --h1Color: black;
+  --primary-color: white;
+  --button: white;
+}
+
+
+body {
+  margin: 50px;
+  background-color: var(--primary-color);;
+}
+
+h1 {
+  color: var(--h1Color);
+  font-family: 'Cinzel', serif;
+}
+
+p {
+  font-family: 'Quattrocento', serif;
+}
+
+article p {
+  align-items: center;
+}
+
+#studentsMain article{
+  align-items: start;
+}
+select#theme {
+  background-color: var(--button);
+  border: 5px solid;
+  border-color: var(--h1Color);
+  font-family: 'Quattrocento', serif;
+}
+
+#theme-changer {
+  color: var(--h1Color);
+  font-family: 'Quattrocento', serif;
+}
+article {
+  background-color: white;
+}
+
 @supports (display: grid) {
   #studentsMain {
     display: grid;
@@ -22,7 +65,30 @@
 }
 .modal-content {
   background-color: #fefefe;
-  border: 1px solid #7c1f17;
   margin: 1em;
   padding: 2em;
 }
+
+
+[houseStyle="hufflepuff"] {
+  --primary-color: #ecb939;
+  --h1Color: #726255;
+}
+
+[houseStyle="gryffindor"] {
+  --h1Color: #FFC500;
+  --primary-color: #7F0909;
+}
+
+[houseStyle="ravenclaw"] {
+  --h1Color: #946b2d;
+  --primary-color: #222f5b;
+}
+
+[houseStyle="slytherin"] {
+  --h1Color:#AAAAAA;
+  --primary-color: #2a623d;
+}
+
+
+

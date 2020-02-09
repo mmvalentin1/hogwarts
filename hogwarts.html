@@ -5,11 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hogwarts students</title>
     <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel|Jim+Nightshade|Quattrocento&display=swap" rel="stylesheet">
   </head>
 
-  <body>
+  <body houseStyle="">
 
     <main>
+
+      <label id="theme-changer">
+        Choose theme
+        <select name="theme" id="theme">
+          <option value="none">None</option>
+            <option value="gryffindor">Gryffindor theme</option>
+            <option value="hufflepuff">Hufflepuff theme</option>
+            <option value="ravenclaw">Ravenclaw theme</option>
+            <option value="slytherin">Slytherin theme</option>
+        </select>
+    </label>
+
+
     <h1>Hogwarts students</h1>
     <section id="studentsMain">
       <template class="templateMain">
