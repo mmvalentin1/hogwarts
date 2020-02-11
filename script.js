@@ -68,4 +68,11 @@ func change theme(){
   console.log(theme)
   doc.querselec(modal).dataset.theeme= theme;
   //use the data set thingy cause i want to change the data color css
+
+
+
+
+  qdo adiciona cor no modal,  remove the eventlistener pq nao precisa do botao 
+  document.queryselector(#modal).dataset.theme =student.house)
 } */
+
