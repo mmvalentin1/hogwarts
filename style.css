@@ -2,6 +2,7 @@
   --h1Color: black;
   --primary-color: white;
   --button: white;
+  --modalcolor: pink;
 }
 
 
@@ -64,7 +65,7 @@ article {
   background-color: rgba(0, 0, 0, 0.3);
 }
 .modal-content {
-  background-color: #fefefe;
+  background-color: var(--modalcolor);
   margin: 1em;
   padding: 2em;
 }
