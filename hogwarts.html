@@ -26,25 +26,28 @@
 
     <h1>Hogwarts students</h1>
     <p>
-      Filter:
-      <button class="filter" data-action="filter" data-filter="cat">Only Cats</button>
-      <button class="filter" data-action="filter" data-filter="dog">Only Dogs</button>
+      Filter by Hose:
+      <button class="filter" data-action="filter" data-filter="Gryffindor">Gryffindor</button>
+      <button class="filter" data-action="filter" data-filter="Slytherin">Slytherin</button>
+      <button class="filter" data-action="filter" data-filter="Hufflepuff">Hufflepuff</button>
+      <button class="filter" data-action="filter" data-filter="Ravenclaw">Ravenclaw</button>
       <button class="filter" data-action="filter" data-filter="*">all</button>
     </p>
-    
+    <template class="templateMain">
+      <article>
+        <h1>title here</h1>
+        <p class="studentsName"></p>
+        <p class="studentsMiddle"></p>
+        <p class="studentsLast"></p>
+        <p class="studentsFull"></p>
+        <p class="gender"></p>
+        <p class="houseName"></p>
+      <button>More</button>
+      </article>
+    </template>
     <section id="studentsMain">
-      <template class="templateMain">
-        <article>
-          <h1>title here</h1>
-          <p class="studentsName"></p>
-          <p class="studentsMiddle"></p>
-          <p class="studentsLast"></p>
-          <p class="studentsFull"></p>
-          <p class="gender"></p>
-          <p class="houseName"></p>
-        <button>More</button>
-        </article>
-      </template>
+      
+
     </section>
 
     <script src="script.js"></script>
