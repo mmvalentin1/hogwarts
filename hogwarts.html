@@ -25,13 +25,23 @@
 
 
     <h1>Hogwarts students</h1>
+    <p>
+      Filter:
+      <button class="filter" data-action="filter" data-filter="cat">Only Cats</button>
+      <button class="filter" data-action="filter" data-filter="dog">Only Dogs</button>
+      <button class="filter" data-action="filter" data-filter="*">all</button>
+    </p>
+    
     <section id="studentsMain">
       <template class="templateMain">
         <article>
           <h1>title here</h1>
-          <p class="studentsName">name here</p>
-          
-          <p class="houseName">house here</p>
+          <p class="studentsName"></p>
+          <p class="studentsMiddle"></p>
+          <p class="studentsLast"></p>
+          <p class="studentsFull"></p>
+          <p class="gender"></p>
+          <p class="houseName"></p>
         <button>More</button>
         </article>
       </template>
@@ -45,8 +55,11 @@
 <!-- modal -->
 <div class="modal-background hide">
 <div class="modal-content" id="modal-content">
-<p class="modal-name">name</p>
-<p class="modal-house">house name</p>
+  <p class="modalStudentsName">first name here</p>
+  <p class="modalStudentsMiddle">middle name here</p>
+  <p class="modalStudentsLast">last name here</p>
+  <p class="modalGender">gender here</p>
+  <p class="modalHouseName">house here</p>
 
 
 </div>
