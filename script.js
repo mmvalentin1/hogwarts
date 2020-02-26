@@ -18,9 +18,13 @@ const Student = {
 function start(){
   console.log("starting")
   loadJSON();
-
+  // filters
+  document.querySelector("[data-filter='Gryffindor']").addEventListener("click", filterGry);
+  document.querySelector("[data-filter='Slytherin']").addEventListener("click", filterSly);
+  document.querySelector("[data-filter='Hufflepuff']").addEventListener("click", filterHuf);
+  document.querySelector("[data-filter='Ravenclaw']").addEventListener("click", filterRav);
+  document.querySelector("[data-filter='*']").addEventListener("click", filterAll);
 }
-
 
 async function loadJSON(){
   const response = await fetch("https://petlatkea.dk/2020/hogwarts/students.json");
@@ -36,57 +40,110 @@ function prepareObjects(jsonData){
   displayList(allStudents);
 }
 
-
-
 function prepareObject(jsonObject){
   const student = Object.create(Student);
-  //console.log(jsonObject.fullname.split(" "))
-  student.house = jsonObject.house;
-  student.gender = jsonObject.gender;
   const parts = jsonObject.fullname.trim();
+  const houseParts = jsonObject.house.trim();
+  //console.log(jsonObject.fullname.split(" "))
+ 
+  //const upperHouse = jsonObject.house.substring(0,1).toUpperCase()
+  //const lowerHouse = jsonObject.house.substring(1,).toLowerCase();
+student.house = (houseParts.substring(0, 1)).toUpperCase() + (houseParts.substring(1, )).toLowerCase();
+
+  console.log(student.house)
+  student.gender = jsonObject.gender;
+  
   //console.log(parts)
   //console.log(parts.split(" "))
   //console.log(student.firstName = texts[1])
   //console.log(student.firstName = texts[2])
   let texts = parts.split(" ")
   //console.log(texts[0].substring(0,1))
-  
-  let firstName = student.firstName;
+
   //console.log(texts)
-  console.log(student.firstName = texts[0].substring(0,1).toUpperCase()+texts[0].substring(1,).toLowerCase())
+  //console.log(student.firstName = texts[0].substring(0,1).toUpperCase()+texts[0].substring(1,).toLowerCase())
   //console.log(student.middleName = texts[1])
   //console.log(student.lastName = texts[2])
   if (texts.length < 3) {
    // console.log("its 2 names")
-    student.firstName = texts[0]
-    student.lastName = texts[1]
-
-    student.newName = `${student.firstName} ${student.lastName}`
+   if(texts[0]){
+    student.firstName = texts[0].substring(0,1).toUpperCase()+texts[0].substring(1,).toLowerCase();
+   }
+   
+   if(texts[1]){
+      student.lastName = texts[1].substring(0,1).toUpperCase()+texts[1].substring(1,).toLowerCase();
+    }
+  student.newName = `${student.firstName} ${student.lastName}`
   } else {
    // console.log("its 3 names")
-    student.firstName = texts[0]
-    student.middleName = texts[1]
-    student.lastName = texts[2]
+   if (texts[0]){
+    student.firstName = texts[0].substring(0,1).toUpperCase()+texts[0].substring(1,).toLowerCase()
+   }
+   if (texts[1]){
+    student.middleName = texts[1].substring(0,1).toUpperCase()+texts[1].substring(1,).toLowerCase()
+   }
+    if (texts[2]) {
+      student.lastName = texts[2].substring(0,1).toUpperCase()+texts[2].substring(1,).toLowerCase()
+    }
     student.newName = `${student.firstName} ${student.middleName} ${student.lastName}`
   }
-
-console.log(student)
 
 return student;
 }
 
+//FILTERS
+
+function filterGry(){
+  const onlyGry = allStudents.filter(displayGry);
+  displayList(onlyGry)
+  function displayGry(student){
+  return student.house === "Gryffindor";
+} 
+}
+
+ function filterSly(){
+  const onlySly = allStudents.filter(displaySly);
+  displayList(onlySly)
+  function displaySly(student){
+  return student.house === "Slytherin";
+} 
+}
+
+function filterHuf(){
+  const onlyHuf = allStudents.filter(displayHuf);
+  displayList(onlyHuf)
+  function displayHuf(student){
+  return student.house === "Hufflepuff";
+} 
+}
+
+function filterRav(){
+  const onlyRav = allStudents.filter(displayRav);
+  displayList(onlyRav)
+    function displayRav(student){
+    return student.house === "Ravenclaw";
+  } 
+}
+
+
+
+function filterAll(){
+displayList(allStudents)
+}
+
+
 function displayList(students) {
   // clear the list
-  //document.querySelector("#list tbody").innerHTML = "";
+  document.querySelector("#studentsMain").innerHTML = "";
 
   // build a new list
   students.forEach(displayStudent);
-    console.log(allStudents)
+  //console.log(allStudents)
     closeModal();
 }
 
 function displayStudent(student) {
-  console.log(student);
+  //console.log(student);
   //pick a theme
   //document.querySelector("select#theme").addEventListener("change", selectTheme);
   
@@ -112,7 +169,7 @@ function displayStudent(student) {
  
   //3.append
   document.querySelector("#studentsMain").appendChild(studentCopy);
-  console.log(student)
+  //console.log(student)
 }
 
 function closeModal() {
@@ -199,4 +256,3 @@ func change theme(){
   qdo adiciona cor no modal,  remove the eventlistener pq nao precisa do botao 
   document.queryselector(#modal).dataset.theme =student.house)
 } */
-
