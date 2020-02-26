@@ -43,6 +43,7 @@ function prepareObjects(jsonData){
   allStudents = jsonData.map(prepareObject);
   
   displayList(allStudents);
+  //mySearch(allStudents);
 }
 
 function prepareObject(jsonObject){
@@ -55,7 +56,7 @@ function prepareObject(jsonObject){
   //const lowerHouse = jsonObject.house.substring(1,).toLowerCase();
 student.house = (houseParts.substring(0, 1)).toUpperCase() + (houseParts.substring(1, )).toLowerCase();
 
-  console.log(student.house)
+  //console.log(student.house)
   student.gender = jsonObject.gender;
   
   //console.log(parts)
@@ -160,19 +161,21 @@ function displayStudent(student) {
   studentCopy.querySelector("button").addEventListener("click", function(){
 
   const modalOpen = document.querySelector(".modal-background");
-  const modalFirst = document.querySelector(".modal-content");
-  modalFirst.setAttribute("houseStyle", student.house);
+
+  //document.querySelector("body").setAttribute("houseStyle", this.value);
   modalOpen.classList.remove("hide")
   
 
   //before: const houseName = document.querySelector(".modal-house");
-  document.querySelector(".modalHouseName").textContent = student.houseName;
+  document.querySelector("#modal-content").setAttribute("data-house", student.house);
+  document.querySelector(".modalHouseName").textContent = student.house;
   document.querySelector(".modalStudentsName").textContent = `First name: ${student.firstName}`;
   document.querySelector(".modalStudentsMiddle").textContent = `Middle name: ${student.middleName}`;
   document.querySelector(".modalStudentsLast").textContent = `Last name: ${student.lastName}`;
   document.querySelector(".modalGender").textContent = `Gender: ${student.gender}`;
   document.querySelector(".modalPic").src = `images/${student.lastName.toLowerCase() + "_" + student.firstName[0].substring(0, 1).toLowerCase() + ".png"}`;
   document.querySelector(".modalCrest").src = `crest/${student.house + ".png"}`;
+
   
 });
  
@@ -260,8 +263,6 @@ function sortLast(){
       displayList(allStudents)
     }
 
-
-
   //sort by FIRST name
 function sortHouse(){
   if (event.target.dataset.sortDirection === "asc") {
@@ -316,6 +317,27 @@ function selectTheme(){
 
 } 
 
+
+// JavaScript code 
+function mySearch() {
+  var input, filter, templateAll, oneArticle, a, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  templateAll = document.getElementById("studentsMain");
+  oneArticle = templateAll.getElementsByTagName("article");
+ 
+  
+
+  var results = [];
+var searchField = "newName";
+var searchVal = "firstName";
+for (var i=0 ; i < obj.list.length ; i++)
+{
+    if (obj.list[i][searchField] == searchVal) {
+        results.push(obj.list[i]);
+    }
+}
+}
 
 /* 
 function showData() {
