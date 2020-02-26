@@ -2,7 +2,6 @@
   --h1Color: black;
   --primary-color: white;
   --button: white;
-  --modalcolor: pink;
 }
 
 
@@ -65,27 +64,35 @@ article {
   background-color: rgba(0, 0, 0, 0.3);
 }
 .modal-content {
-  background-color: var(--modalcolor);
+  background-color: var(--primary-color);
+  color: var(--h1Color);
   margin: 1em;
   padding: 2em;
 }
 
-
+.modalCrest {
+  height: 200px;
+  width: auto;
+}
+[data-house="Hufflepuff"],
 [houseStyle="hufflepuff"] {
   --primary-color: #ecb939;
   --h1Color: #726255;
 }
 
+[data-house="Gryffindor"],
 [houseStyle="gryffindor"] {
   --h1Color: #FFC500;
   --primary-color: #7F0909;
 }
 
+[data-house="Ravenclaw"],
 [houseStyle="ravenclaw"] {
   --h1Color: #946b2d;
   --primary-color: #222f5b;
 }
 
+[data-house="Slytherin"],
 [houseStyle="slytherin"] {
   --h1Color:#AAAAAA;
   --primary-color: #2a623d;

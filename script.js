@@ -147,7 +147,7 @@ function displayList(students) {
 function displayStudent(student) {
   //console.log(student);
   //pick a theme
-  //document.querySelector("select#theme").addEventListener("change", selectTheme);
+  document.querySelector("select#theme").addEventListener("change", selectTheme);
   
   //1. clone template
   const template = document.querySelector(".templateMain").content;
@@ -158,8 +158,12 @@ function displayStudent(student) {
   
   //open modal
   studentCopy.querySelector("button").addEventListener("click", function(){
-  const modalOpen = document.querySelector(".modal-background")
+
+  const modalOpen = document.querySelector(".modal-background");
+  const modalFirst = document.querySelector(".modal-content");
+  modalFirst.setAttribute("houseStyle", student.house);
   modalOpen.classList.remove("hide")
+  
 
   //before: const houseName = document.querySelector(".modal-house");
   document.querySelector(".modalHouseName").textContent = student.houseName;
@@ -167,6 +171,9 @@ function displayStudent(student) {
   document.querySelector(".modalStudentsMiddle").textContent = `Middle name: ${student.middleName}`;
   document.querySelector(".modalStudentsLast").textContent = `Last name: ${student.lastName}`;
   document.querySelector(".modalGender").textContent = `Gender: ${student.gender}`;
+  document.querySelector(".modalPic").src = `images/${student.lastName.toLowerCase() + "_" + student.firstName[0].substring(0, 1).toLowerCase() + ".png"}`;
+  document.querySelector(".modalCrest").src = `crest/${student.house + ".png"}`;
+  
 });
  
   //3.append
@@ -301,6 +308,14 @@ function closeModal() {
   modal.classList.add("hide");
   });
 }
+function selectTheme(){
+ 
+  document.querySelector("body").setAttribute("houseStyle", this.value);
+
+  console.log(selectTheme)
+
+} 
+
 
 /* 
 function showData() {
