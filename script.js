@@ -24,6 +24,11 @@ function start(){
   document.querySelector("[data-filter='Hufflepuff']").addEventListener("click", filterHuf);
   document.querySelector("[data-filter='Ravenclaw']").addEventListener("click", filterRav);
   document.querySelector("[data-filter='*']").addEventListener("click", filterAll);
+  //Sorting
+  document.querySelector("[data-sort='firstN']").addEventListener("click", sortFirst);
+  document.querySelector("[data-sort='lastN']").addEventListener("click", sortLast);
+  document.querySelector("[data-sort='houseN']").addEventListener("click", sortHouse);
+
 }
 
 async function loadJSON(){
@@ -125,12 +130,9 @@ function filterRav(){
   } 
 }
 
-
-
 function filterAll(){
 displayList(allStudents)
 }
-
 
 function displayList(students) {
   // clear the list
@@ -171,6 +173,126 @@ function displayStudent(student) {
   document.querySelector("#studentsMain").appendChild(studentCopy);
   //console.log(student)
 }
+
+
+//sort by FIRST name
+function sortFirst(){
+  if (event.target.dataset.sortDirection === "asc") {
+      event.target.dataset.sortDirection = "desc";
+      console.log("sort asc")
+      firstAsc();
+  } else {
+      console.log("sort desc")
+      firstDesc();
+      event.target.dataset.sortDirection = "asc";
+  }
+  }
+  //condition - ascending
+  function firstAsc(){
+      console.log(allStudents)
+      function compareName(a, b){
+      if(a.firstName < b.firstName) {
+      return -1;
+      } else if (a.firstName > b.firstName){
+      return 1;
+      }
+      }   
+      allStudents.sort(compareName)
+      displayList(allStudents)
+    }
+  //condition - descending
+  function firstDesc(){
+      console.log(allStudents)
+      function compareName(a, b){
+      if(a.firstName < b.firstName) {
+      return 1;
+      } else if (a.firstName > b.firstName){
+      return -1;
+      }
+      }   
+      allStudents.sort(compareName)
+      displayList(allStudents)
+    }
+  
+//sort by LAST NAME
+function sortLast(){
+  if (event.target.dataset.sortDirection === "asc") {
+      event.target.dataset.sortDirection = "desc";
+      console.log("sort asc")
+      lastAsc();
+  } else {
+      console.log("sort desc")
+      lastDesc();
+      event.target.dataset.sortDirection = "asc";
+  }
+  }
+//condition - ascending
+  function lastAsc(){
+      console.log(allStudents)
+      function compareName(a, b){
+      if(a.lastName < b.lastName) {
+      return -1;
+      } else if (a.lastName > b.lastName){
+      return 1;
+      }
+      }   
+      allStudents.sort(compareName)
+      displayList(allStudents)
+    }
+//condition - descending
+  function lastDesc(){
+      console.log(allStudents)
+      function compareName(a, b){
+      if(a.lastName < b.lastName) {
+      return 1;
+      } else if (a.lastName > b.lastName){
+      return -1;
+      }
+      }   
+      allStudents.sort(compareName)
+      displayList(allStudents)
+    }
+
+
+
+  //sort by FIRST name
+function sortHouse(){
+  if (event.target.dataset.sortDirection === "asc") {
+      event.target.dataset.sortDirection = "desc";
+      console.log("sort asc")
+      houseAsc();
+  } else {
+      console.log("sort desc")
+      houseDesc();
+      event.target.dataset.sortDirection = "asc";
+  }
+  }
+  //condition - ascending
+  function houseAsc(){
+      //console.log(houseParts)
+      function compareName(a, b){
+      if(a.house < b.house) {
+      return -1;
+      } else if (a.house > b.house){
+      return 1;
+      }
+      }   
+      allStudents.sort(compareName)
+      displayList(allStudents)
+    }
+  //condition - descending
+  function houseDesc(){
+      console.log(allStudents)
+      function compareName(a, b){
+      if(a.house < b.house) {
+      return 1;
+      } else if (a.house > b.house){
+      return -1;
+      }
+      }   
+      allStudents.sort(compareName)
+      displayList(allStudents)
+    }
 
 function closeModal() {
   //close the modal when clicked

@@ -26,13 +26,21 @@
 
     <h1>Hogwarts students</h1>
     <p>
-      Filter by Hose:
+      Filter by House:
       <button class="filter" data-action="filter" data-filter="Gryffindor">Gryffindor</button>
       <button class="filter" data-action="filter" data-filter="Slytherin">Slytherin</button>
       <button class="filter" data-action="filter" data-filter="Hufflepuff">Hufflepuff</button>
       <button class="filter" data-action="filter" data-filter="Ravenclaw">Ravenclaw</button>
       <button class="filter" data-action="filter" data-filter="*">all</button>
     </p>
+
+
+    <div id="sorting">
+      <p class="sortBy" data-action="sort" data-sort-direction="asc" data-sort="firstN">Sort by: First Name</p>
+      <p class="sortBy" data-action="sort" data-sort-direction="asc" data-sort="lastN">Sort by: Last Name</p>
+      <p class="sortBy" data-action="sort" data-sort-direction="asc" data-sort="houseN">Sort by: House Name</p>
+    </div>
+
     <template class="templateMain">
       <article>
         <h1>title here</h1>
