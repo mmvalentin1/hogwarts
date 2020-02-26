@@ -172,6 +172,7 @@ function displayStudent(student) {
   document.querySelector(".modalStudentsLast").textContent = `Last name: ${student.lastName}`;
   document.querySelector(".modalGender").textContent = `Gender: ${student.gender}`;
   document.querySelector(".modalPic").src = `images/${student.lastName.toLowerCase() + "_" + student.firstName[0].substring(0, 1).toLowerCase() + ".png"}`;
+  document.querySelector(".modalCrest").src = `crest/${student.house + ".png"}`;
   
 });
  

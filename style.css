@@ -70,6 +70,10 @@ article {
   padding: 2em;
 }
 
+.modalCrest {
+  height: 200px;
+  width: auto;
+}
 [data-house="Hufflepuff"],
 [houseStyle="hufflepuff"] {
   --primary-color: #ecb939;
