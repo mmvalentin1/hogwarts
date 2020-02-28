@@ -4,7 +4,6 @@
   --button: white;
 }
 
-
 body {
   margin: 50px;
  background-color: var(--primary-color);
@@ -26,6 +25,7 @@ article p {
 #studentsMain article{
   align-items: start;
 }
+
 select#theme {
   background-color: var(--button);
   border: 5px solid;
@@ -37,19 +37,22 @@ select#theme {
   color: var(--h1Color);
   font-family: 'Quattrocento', serif;
 }
+
 article {
   background-color: white;
 }
 
+/*-------------------------------GRID---------------------------------------------*/
+
 @supports (display: grid) {
   #studentsMain {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 1rem;
   }
 }
 
-/*MODAL*/
+/*-------------------------------MODAL---------------------------------------------*/
 
 .hide {
   display: none;
