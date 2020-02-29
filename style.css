@@ -45,6 +45,18 @@ select#theme {
 article {
   background-color: white;
 }
+/* ****** PREFECT ****** */
+
+#imagePrefect {
+  filter: grayscale(100%);  
+  height: 50px;
+  width: auto;
+}
+
+#imagePrefect.true {
+  height: 50px;
+  width: auto;
+}
 /* ****** STAR ****** */
 
 [data-field="star"] {
