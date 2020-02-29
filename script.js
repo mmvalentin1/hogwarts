@@ -9,6 +9,20 @@ let prefects = [];
 let newPrefects = [];
 let expelledList = [];
 let notExpelled = [];
+//Protoype for Hacked student:
+let hackedOne = {
+  firstName: "Patricia",
+  middleName: "Figueiredo",
+  lastName: "Bettio",
+  newName:"Patricia Bettio",
+  nickName:"",
+  gender:"girl",
+  houseName: "Hufflepuff",
+  house:"Hufflepuff",
+  image: "",
+  star: false,
+
+}
 //Prototype for all students: 
 const Student = {
       firstName: "",
@@ -41,6 +55,8 @@ function start(){
   //Expelled
   document.querySelector(".showExpelled").addEventListener("click", showExpelled);
   document.querySelector(".restore").addEventListener("click", restoreExpelled);
+  //Hack the System
+  document.querySelector(".hackTheSystem").addEventListener("click", hackTheSystem);
 }
 
 async function loadJSON(){
@@ -199,6 +215,10 @@ function displayStudent(student) {
         } else {
         document.querySelector(".modalExpelled").textContent = `Expelled: no`;
         } 
+        //Expelled for the hacked:
+        if (student.newName == "Patricia Bettio"){
+        document.querySelector(".modalExpelled").textContent = `Expelled: never`; 
+        }
 });
 
   //3.append
@@ -415,6 +435,14 @@ function expelStudent(student) {
   console.log(allStudents.filter(student => student.expelled === false))
   allStudents = allStudents.filter(student => student.expelled === false)
   document.querySelector(".expelCount").textContent = `(${expelledList.length})`;
+    //prevent user from expelling the Hacked one:
+    if (student.newName == "Patricia Bettio"){
+    console.log("thats me!")
+    student.expelled = false;
+    expelledList.pop(hackedOne);
+    allStudents.unshift(hackedOne);
+    alert("Try as much as you can!")
+    }
   displayList(allStudents)
   console.log(expelledList)
 }
@@ -427,6 +455,17 @@ function showExpelled(){
 
 function restoreExpelled(){
   allStudents = expelledList.concat(allStudents)
+  console.log(allStudents)
+  displayList(allStudents)
+}
+
+/* ---------------------------------------------HACK THE SYSTEM------------------------------------------------------------------------------- */
+
+function hackTheSystem(){
+  console.log(allStudents)
+  console.log(hackedOne)
+  //allStudents = allStudents.push(hackedOne);
+  allStudents.unshift(hackedOne);
   console.log(allStudents)
   displayList(allStudents)
 }
