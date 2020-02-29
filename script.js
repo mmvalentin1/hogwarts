@@ -5,6 +5,8 @@ window.addEventListener("DOMContentLoaded", start);
 /* ---------------------------------------GLOBAL-------------------------------------------------------------- */
 
 let allStudents =  [];
+let prefects = [];
+let newPrefects = [];
 // The prototype for all students: 
 const Student = {
       firstName: "",
@@ -14,7 +16,8 @@ const Student = {
       nickName:"",
       gender:"",
       houseName: "",
-      image: ""
+      image: "",
+      star: false
 };
 
 /* ---------------------------------------INIT-------------------------------------------------------------- */
@@ -136,12 +139,32 @@ function displayStudent(student) {
   //console.log(student);
   //pick a theme
   document.querySelector("select#theme").addEventListener("change", selectTheme);
+
   //1. clone template
   const template = document.querySelector(".templateMain").content;
   const studentCopy = template.cloneNode(true);
 
+  // set clone data
+  studentCopy.querySelector("[data-field=star").dataset.star = student.star;
+
+  // TODO: Show star ⭐ or ☆
+  
+  if (student.star === true) {
+    studentCopy.querySelector("[data-field=star]").textContent = "⭐";
+} else {
+    studentCopy.querySelector("[data-field=star]").textContent = "☆";
+}
+
+
+  // TODO: Add event listener to click on star
+  studentCopy.querySelector("[data-field=star]").addEventListener("click", function(){
+    //maxTwo(student);
+    differentType(student);
+})
   studentCopy.querySelector(".studentsFull").textContent = student.newName;
   studentCopy.querySelector(".houseName").textContent = student.house;
+
+
   
   //MODAL
   studentCopy.querySelector("button").addEventListener("click", function(){
@@ -154,9 +177,20 @@ function displayStudent(student) {
   document.querySelector(".modalStudentsName").textContent = `First name: ${student.firstName}`;
   document.querySelector(".modalStudentsMiddle").textContent = `Middle name: ${student.middleName}`;
   document.querySelector(".modalStudentsLast").textContent = `Last name: ${student.lastName}`;
-  document.querySelector(".modalGender").textContent = `Gender: ${student.gender}`;
   document.querySelector(".modalPic").src = `images/${student.lastName.toLowerCase() + "_" + student.firstName[0].substring(0, 1).toLowerCase() + ".png"}`;
   document.querySelector(".modalCrest").src = `crest/${student.house + ".png"}`; 
+  //document.querySelector("#imagePrefect").src = `prefect/${"prefect_"+ student.house + ".png"}`;
+  console.log(student.star)
+        
+       //show Prefect or not in modal:
+       //const prefectSymbol = document.querySelector("#imagePrefect");
+       if (student.star == true){
+       document.querySelector(".modalPrefect").textContent = `Prefect: Yes`;
+       // prefectSymbol.classList.add("true");
+       } else {
+       document.querySelector(".modalPrefect").textContent = `Prefect: no`;
+       // prefectSymbol.classList.remove("true");
+       } 
 });
  
   //3.append
@@ -282,6 +316,90 @@ function sortHouse(){
       displayList(allStudents)
       }
 
+
+/* -----------------------------------------------------------------------PREFECTS----------------------------------------------------------------------------------- */
+
+ function differentType(student){
+ if (student.star){
+ //console.log("this student is NOT a favorite")
+ student.star = false;
+ console.log(student.star)
+ } else {
+     //student.star = true 
+     console.log(student.star) 
+     //console.log("this student IS a favorite")
+     function checkType(x){
+     return x.gender === student.gender;
+ }
+ //define who will be in the new Prefects array:
+ prefects = allStudents.filter(students=> students.star == true );
+ if (prefects.some(checkType) == false) {
+    student.star = true;
+    console.log(student.star)
+    }
+    else {   
+    console.log(prefects[0])
+    console.log(prefects)
+    console.log(student.star)
+    document.querySelector("#onlyonekind").classList.add("show")
+    //find the one that has the same type:
+    console.log(prefects[0].firstName)
+    document.querySelector("#onlyonekind .student1").textContent = `${prefects[0].newName} (${prefects[0].gender})`;
+    document.querySelector("#onlyonekind [data-action=remove1]").addEventListener("click", function() {
+    console.log(prefects[0])
+    //give the value False to the duplicate that has to be removed:
+    prefects[0].star = false;
+    student.star = true;
+    //immediately close dialog:
+    document.querySelector("#onlyonekind").classList.remove("show")
+    displayList(allStudents);  
+    })
+    //option close dialog:   
+    document.querySelector("#onlyonekind .closebutton").addEventListener("click", function () {
+    document.querySelector("#onlyonekind").classList.remove("show")
+    })     
+    displayList(allStudents);
+  }
+
+//user cannot select more than 2:
+ if (prefects.length>2 ){
+    document.querySelector("#onlytwoprefects").classList.add("show");
+    console.log(prefects)
+    console.log(student.star)
+    document.querySelector("#onlytwoprefects .student1").textContent = `${prefects[0].newName} (${prefects[0].gender})`;
+    document.querySelector("#onlytwoprefects [data-action=remove1]").addEventListener("click", function() {
+    console.log(prefects[0])
+    //sets to false the student to be removed:
+    prefects[0].star = false;
+    //winners[1].star = true;
+    //selects the student user is clicking now:
+    student.star= true;
+    displayList(allStudents)
+    document.querySelector("#onlytwoprefects").classList.remove("show")
+    }) 
+    //second button:
+    document.querySelector("#onlytwoprefects .student2").textContent = `${prefects[1].newName} (${prefects[1].gender})`;
+    document.querySelector("#onlytwoprefects [data-action=remove2]").addEventListener("click", function() {
+    console.log(prefects[1])
+    prefects[1].star = false;
+    // winners[0].star = true;
+    student.star= true;
+    displayList(allStudents)
+    document.querySelector("#onlytwoprefects").classList.remove("show")
+    })       
+    }      
+    prefects = allStudents.filter(students=> students.star == true );
+    console.log(allStudents.filter(prefects=> prefects.star == true ));
+    
+  }
+  
+
+  displayList(allStudents)
+
+ 
+}
+
+console.log(prefects)
 /* ---------------------------------------------OTHERS------------------------------------------------------------------------------- */
 function closeModal() {
   const modal = document.querySelector(".modal-background");
