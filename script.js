@@ -7,7 +7,9 @@ window.addEventListener("DOMContentLoaded", start);
 let allStudents =  [];
 let prefects = [];
 let newPrefects = [];
-// The prototype for all students: 
+let expelledList = [];
+let notExpelled = [];
+//Prototype for all students: 
 const Student = {
       firstName: "",
       middleName: "",
@@ -17,11 +19,12 @@ const Student = {
       gender:"",
       houseName: "",
       image: "",
-      star: false
+      star: false,
+      expelled: false
 };
 
 /* ---------------------------------------INIT-------------------------------------------------------------- */
-
+//Event Listeners:
 function start(){
   console.log("starting")
   loadJSON();
@@ -35,7 +38,9 @@ function start(){
   document.querySelector("[data-sort='firstN']").addEventListener("click", sortFirst);
   document.querySelector("[data-sort='lastN']").addEventListener("click", sortLast);
   document.querySelector("[data-sort='houseN']").addEventListener("click", sortHouse);
-
+  //Expelled
+  document.querySelector(".showExpelled").addEventListener("click", showExpelled);
+  document.querySelector(".restore").addEventListener("click", restoreExpelled);
 }
 
 async function loadJSON(){
@@ -135,38 +140,36 @@ function displayList(students) {
 }
 
 /* ---------------------------------------------TEMPLATE------------------------------------------------------------------------------- */
+
 function displayStudent(student) {
   //console.log(student);
-  //pick a theme
+  //Select a Theme:
   document.querySelector("select#theme").addEventListener("change", selectTheme);
-
-  //1. clone template
+  //Clone template
   const template = document.querySelector(".templateMain").content;
   const studentCopy = template.cloneNode(true);
-
-  // set clone data
-  studentCopy.querySelector("[data-field=star").dataset.star = student.star;
-
-  // TODO: Show star ⭐ or ☆
-  
+  //star
+  studentCopy.querySelector("[data-field=star").dataset.star = student.star;  
+  //star ⭐ or ☆
   if (student.star === true) {
-    studentCopy.querySelector("[data-field=star]").textContent = "⭐";
+  studentCopy.querySelector("[data-field=star]").textContent = "⭐";
 } else {
-    studentCopy.querySelector("[data-field=star]").textContent = "☆";
+  studentCopy.querySelector("[data-field=star]").textContent = "☆";
 }
-
-
-  // TODO: Add event listener to click on star
+  //Click on star (prefect):
   studentCopy.querySelector("[data-field=star]").addEventListener("click", function(){
-    //maxTwo(student);
-    differentType(student);
+  //maxTwo(student);
+  differentType(student);
 })
-  studentCopy.querySelector(".studentsFull").textContent = student.newName;
-  studentCopy.querySelector(".houseName").textContent = student.house;
-
-
-  
-  //MODAL
+ //Expel a student:
+ document.querySelector(".expelCount").textContent = `(${expelledList.length})`;
+ studentCopy.querySelector(".expell").addEventListener("click", function () {
+ expelStudent(student);
+})
+ //Overview: 
+ studentCopy.querySelector(".studentsFull").textContent = student.newName;
+ studentCopy.querySelector(".houseName").textContent = student.house;
+ //-------------------MODAL--------------------
   studentCopy.querySelector("button").addEventListener("click", function(){
   const modalOpen = document.querySelector(".modal-background");
   //document.querySelector("body").setAttribute("houseStyle", this.value);
@@ -180,9 +183,8 @@ function displayStudent(student) {
   document.querySelector(".modalPic").src = `images/${student.lastName.toLowerCase() + "_" + student.firstName[0].substring(0, 1).toLowerCase() + ".png"}`;
   document.querySelector(".modalCrest").src = `crest/${student.house + ".png"}`; 
   //document.querySelector("#imagePrefect").src = `prefect/${"prefect_"+ student.house + ".png"}`;
-  console.log(student.star)
-        
-       //show Prefect or not in modal:
+  console.log(student.star)   
+       //show PREFECT or not in modal:
        //const prefectSymbol = document.querySelector("#imagePrefect");
        if (student.star == true){
        document.querySelector(".modalPrefect").textContent = `Prefect: Yes`;
@@ -191,8 +193,14 @@ function displayStudent(student) {
        document.querySelector(".modalPrefect").textContent = `Prefect: no`;
        // prefectSymbol.classList.remove("true");
        } 
+       //show EXPELLED or not in modal:
+       if (student.expelled == true){
+        document.querySelector(".modalExpelled").textContent = `Expelled: Yes`;
+        } else {
+        document.querySelector(".modalExpelled").textContent = `Expelled: no`;
+        } 
 });
- 
+
   //3.append
   document.querySelector("#studentsMain").appendChild(studentCopy);
   //console.log(student)
@@ -316,7 +324,6 @@ function sortHouse(){
       displayList(allStudents)
       }
 
-
 /* -----------------------------------------------------------------------PREFECTS----------------------------------------------------------------------------------- */
 
  function differentType(student){
@@ -398,9 +405,34 @@ function sortHouse(){
 
  
 }
-
 console.log(prefects)
+
+/* -----------------------------------------------------------------------EXPELLED----------------------------------------------------------------------------------- */
+
+function expelStudent(student) {
+  student.expelled = true;
+  expelledList.push(student);
+  console.log(allStudents.filter(student => student.expelled === false))
+  allStudents = allStudents.filter(student => student.expelled === false)
+  document.querySelector(".expelCount").textContent = `(${expelledList.length})`;
+  displayList(allStudents)
+  console.log(expelledList)
+}
+
+function showExpelled(){
+  console.log(expelledList)
+  console.log(allStudents)
+  displayList(expelledList)
+}
+
+function restoreExpelled(){
+  allStudents = expelledList.concat(allStudents)
+  console.log(allStudents)
+  displayList(allStudents)
+}
+
 /* ---------------------------------------------OTHERS------------------------------------------------------------------------------- */
+
 function closeModal() {
   const modal = document.querySelector(".modal-background");
   modal.addEventListener("click", () => {
