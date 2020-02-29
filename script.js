@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", start);
 /* ---------------------------------------GLOBAL-------------------------------------------------------------- */
 
 let allStudents =  [];
+let winners = [];
 // The prototype for all students: 
 const Student = {
       firstName: "",
@@ -14,7 +15,8 @@ const Student = {
       nickName:"",
       gender:"",
       houseName: "",
-      image: ""
+      image: "",
+      star: false
 };
 
 /* ---------------------------------------INIT-------------------------------------------------------------- */
@@ -140,8 +142,26 @@ function displayStudent(student) {
   const template = document.querySelector(".templateMain").content;
   const studentCopy = template.cloneNode(true);
 
+  // set clone data
+  studentCopy.querySelector("[data-field=star").dataset.star = student.star;
+
+  // TODO: Show star ⭐ or ☆
+  if (student.star === true) {
+    studentCopy.querySelector("[data-field=star]").textContent = "⭐";
+} else {
+    studentCopy.querySelector("[data-field=star]").textContent = "☆";
+}
+
+
+  // TODO: Add event listener to click on star
+  studentCopy.querySelector("[data-field=star]").addEventListener("click", function(){
+    //maxTwo(animal);
+    differentType(student);
+})
   studentCopy.querySelector(".studentsFull").textContent = student.newName;
   studentCopy.querySelector(".houseName").textContent = student.house;
+
+
   
   //MODAL
   studentCopy.querySelector("button").addEventListener("click", function(){
@@ -281,6 +301,98 @@ function sortHouse(){
       allStudents.sort(compareName)
       displayList(allStudents)
       }
+
+
+
+
+ function differentType(student){
+ //WINNER TYPE SELECTION
+ if (student.star){
+ //console.log("this animal is NOT A WINNER")
+ student.star = false;
+ console.log(student.star)
+ //console.log(animal)
+ } else {
+     //student.star = true 
+     console.log(student.star) 
+     //console.log("this animal is a WINNER")
+     function checkType(x){
+     return x.gender === student.gender;
+ }
+
+ if (winners.some(checkType) == false) {
+    console.log("star is there");
+    student.star = true;
+    }
+    else {
+    console.log("star type IS there");
+    console.log(winners[0])
+    console.log(winners)
+    console.log(student.star)
+    document.querySelector("#onlyonekind").classList.add("show")
+    //find the one that has the same type
+    console.log(winners[0].firstName)
+    document.querySelector("#onlyonekind .animal1").textContent = `${winners[0].firstName}, the ${winners[0].gender}`;
+    document.querySelector("#onlyonekind [data-action=remove1]").addEventListener("click", function() {
+    console.log(winners[0])
+    //give the value False to the duplicate that has to be removed:
+    winners[0].star = false
+    student.star = true;
+    document.querySelector("#onlyonekind").classList.remove("show")
+    displayList(allStudents);  
+    })   
+    document.querySelector("#onlyonekind .closebutton").addEventListener("click", function () {
+    console.log("closing test")
+    document.querySelector("#onlyonekind").classList.remove("show")
+    })            
+    //displayList(allStudents);
+    
+    }
+
+
+
+
+      if (winners.length>2 ){
+        
+        document.querySelector("#onlytwowinners").classList.add("show");
+        console.log(winners)
+        console.log(student.star)
+        document.querySelector("#onlytwowinners .animal1").textContent = `${winners[0].newName}, the ${winners[0].gender}`;
+       
+        document.querySelector("#onlytwowinners [data-action=remove1]").addEventListener("click", function() {
+            console.log(winners[0])
+            //sets to false the animal to be removed:
+            winners[0].star = false;
+            winners[1].star = true;
+            //selects the animal user is clicking now:
+            student.star= true;
+            displayList(allStudents)
+            document.querySelector("#onlytwowinners").classList.remove("show")
+        }) 
+
+        document.querySelector("#onlytwowinners .animal2").textContent = `${winners[1].newName}, the ${winners[1].gender}`;
+        document.querySelector("#onlytwowinners [data-action=remove2]").addEventListener("click", function() {
+            console.log(winners[1])
+            //sets to false the animal to be removed:
+            winners[1].star = false;
+            winners[0].star = true;
+            //selects the animal user is clicking now:
+            student.star= true;
+            displayList(allStudents)
+            document.querySelector("#onlytwowinners").classList.remove("show")
+        })    
+          
+          
+      }
+      winners = allStudents.filter(students=> students.star == true);
+
+   }
+  displayList(allStudents)
+ }
+
+
+
+
 
 /* ---------------------------------------------OTHERS------------------------------------------------------------------------------- */
 function closeModal() {
