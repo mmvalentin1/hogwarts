@@ -2,20 +2,35 @@
   --h1Color: black;
   --primary-color: white;
   --button: white;
+  --background: url(img_other/back1.jpg);
 }
 
-[data-action] {
-  cursor: pointer;
+
+.heroImage {
+  background-image: url(img_other/banquet.png);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 20px;
+  height: 400px;
+  width: auto;
+  filter: grayscale(0%);
 }
 
 body {
-  margin: 50px;
- background-color: var(--primary-color);
+margin: 2em;
+background-color: var(--primary-color);
+background-image: var(--background);
 }
 
 h1 {
   color: var(--h1Color);
   font-family: 'Cinzel', serif;
+  text-align: center;
+  font-size: 35px;
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 p {
@@ -24,27 +39,47 @@ p {
 
 article p {
   align-items: center;
+  color: var(--h1Color);
 }
 
+
+
 #studentsMain article{
-  align-items: start;
+  align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding: 1em;
 }
 
 select#theme {
   background-color: var(--button);
-  border: 5px solid;
+  border: 3px solid;
   border-color: var(--h1Color);
   font-family: 'Quattrocento', serif;
+  padding: 5px;
 }
 
 #theme-changer {
   color: var(--h1Color);
   font-family: 'Quattrocento', serif;
+  font-size: 20px;
+  padding: 20px;
 }
 
 article {
   background-color: white;
 }
+
+/******** SEARCH **********/
+#myInput {
+  display: flex;
+  float: right;
+  border: 1px solid;
+  border-color: var(--h1Color);
+  font-family: 'Quattrocento', serif;
+  padding: 5px;
+}
+
 /* ****** PREFECT ****** */
 
 #imagePrefect {
@@ -115,6 +150,54 @@ article {
 .dialog .closebutton:hover {
   color: black;
 }
+/*-------------------------------hack---------------------------------------------*/
+
+.hackTheSystem{
+  margin: 20px;
+  float: right;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  border-width: 1px;
+  color: white;
+  background-color: transparent;
+  font-size: 30px;
+}
+/*-------------------------------SORTING---------------------------------------------*/
+
+#sorting {
+  display: inline-block;
+  color: white;
+  background-color: transparent;
+  font-size: 15px;
+}
+/*-------------------------------FILTER---------------------------------------------*/
+
+[data-action] {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: 1px 6px;
+  border-width: 2px;
+  border-style: outset;
+}
+
+.buttonFilter{
+  height: 150px;
+  width: auto;
+
+}
+
+#filters{
+  text-align: center;
+  padding: 2em;
+}
+
+.filterTitle{
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+}
+
+
 /*-------------------------------GRID---------------------------------------------*/
 
 @supports (display: grid) {
@@ -190,24 +273,28 @@ grid-area: modalLast;
 [houseStyle="hufflepuff"] {
   --primary-color: #ecb939;
   --h1Color: #726255;
+  --background: url(img_other/backHuffle.jpg);
 }
 
 [data-house="Gryffindor"],
 [houseStyle="gryffindor"] {
   --h1Color: #FFC500;
   --primary-color: #7F0909;
+  --background: url(img_other/backGryf.jpg);
 }
 
 [data-house="Ravenclaw"],
 [houseStyle="ravenclaw"] {
   --h1Color: #946b2d;
   --primary-color: #222f5b;
+  --background: url(img_other/backRaven.jpg);
 }
 
 [data-house="Slytherin"],
 [houseStyle="slytherin"] {
   --h1Color:#AAAAAA;
   --primary-color: #2a623d;
+  --background: url(img_other/backSly.jpg);
 }
 
 

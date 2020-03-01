@@ -11,8 +11,7 @@
   <body houseStyle="">
 
     <header>
-<div class="heroImage"></div>
-
+    <div class="heroImage"></div>
     </header>
 
     <main>
@@ -28,21 +27,21 @@
         </select>
       </label>
 
-
-    <h1>Hogwarts students</h1>
-
 <!--------------------------------SEARCH--------------------------------------------->    
+<!-- copied from W3SCHOOLS (https://www.w3schools.com/howto/howto_js_filter_lists.asp) -->
     <input type="text" id="myInput" onkeyup="mySearch()" placeholder="Search for names.." title="Type in a name">
 
+
+    <h1>Hogwarts students</h1>
 <!--------------------------------FILTERING--------------------------------------------->
-    <p>
-      Filter by House:
-      <button class="filter" data-action="filter" data-filter="Gryffindor">Gryffindor</button>
-      <button class="filter" data-action="filter" data-filter="Slytherin">Slytherin</button>
-      <button class="filter" data-action="filter" data-filter="Hufflepuff">Hufflepuff</button>
-      <button class="filter" data-action="filter" data-filter="Ravenclaw">Ravenclaw</button>
-      <button class="filter" data-action="filter" data-filter="*">all</button>
-    </p>
+    <div id="filters">
+      <p class="filterTitle">Filter by House:</p>
+      <button class="filter" data-action="filter" data-filter="Gryffindor"><img src="crest/gryffindor.png" alt="Gryffindor" class="buttonFilter"></button>
+      <button class="filter" data-action="filter" data-filter="Slytherin" ><img src="crest/slytherin.png" alt="Slytherin" class="buttonFilter"></button>
+      <button class="filter" data-action="filter" data-filter="Hufflepuff"><img src="crest/hufflepuff.png" alt="Hufflepuff" class="buttonFilter"></button>
+      <button class="filter" data-action="filter" data-filter="Ravenclaw"><img src="crest/ravenclaw.png" alt="Ravenclaw" class="buttonFilter"></button>
+      <button class="filter" data-action="filter" data-filter="*"><img src="crest/hogwarts.png" alt="Hogwarts Crest" class="buttonFilter"></button>
+    </div>
 
 <!--------------------------------SORTING--------------------------------------------->
     <div id="sorting">
@@ -52,7 +51,7 @@
     </div>
 
 <!--------------------------------EXPELLED--------------------------------------------->
-    <div>
+    <div id="expelled">
       <p class="showExpelled">View Expelled <span class="expelCount">Counter</span></p>
       <button class="restore">Display All (Expelled or not)</button>
     </div>
@@ -60,12 +59,12 @@
 
 <!--------------------------------HACKING--------------------------------------------->
 
-<button class="hackTheSystem">Hack the System!</button>
+<button class="hackTheSystem" id="typewriter">Hack the System!</button>
 
 <!--------------------------------TEMPLATE--------------------------------------------->
     <template class="templateMain">
       <article>
-        <h1>title here</h1>
+        <img class="studentPic">
         <div data-field="star">⭐</div>
         <p class="studentsName"></p>
         <p class="studentsMiddle"></p>
@@ -126,7 +125,6 @@
   <p class="modalStudentsLast">last name here</p>
   <p class="modalPrefect">Is the student a Prefect or not</p>
   <p class="modalExpelled">Was the student expelled or not</p>
-
   <img class="modalPic">
   
 </div>
