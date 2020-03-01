@@ -9,6 +9,8 @@ let prefects = [];
 let newPrefects = [];
 let expelledList = [];
 let notExpelled = [];
+
+let onlyGry;
 //Protoype for Hacked student:
 let hackedOne = {
   firstName: "Patricia",
@@ -113,35 +115,46 @@ function prepareObject(jsonObject){
 /* ---------------------------------------FILTERS------------------------------------------------------------------------------------- */
 
 function filterGry(){
-  const onlyGry = allStudents.filter(displayGry);
+  let onlyGry = allStudents.filter(displayGry);
   displayList(onlyGry)
+  //filter counter
+  document.querySelector(".gryfCount").textContent = `Gryffindor (${onlyGry.length})`;
   function displayGry(student){
   return student.house === "Gryffindor";
 } 
+console.log(onlyGry)
 }
 function filterSly(){
-  const onlySly = allStudents.filter(displaySly);
+  let onlySly = allStudents.filter(displaySly);
   displayList(onlySly)
+  //filter counter
+  document.querySelector(".slyCount").textContent = `Slytherin (${onlySly.length})`;
   function displaySly(student){
   return student.house === "Slytherin";
 } 
 }
 function filterHuf(){
-  const onlyHuf = allStudents.filter(displayHuf);
+  let onlyHuf = allStudents.filter(displayHuf);
   displayList(onlyHuf)
+  //filter counter
+  document.querySelector(".huffCount").textContent = `Hufflepuff (${onlyHuf.length})`;
   function displayHuf(student){
   return student.house === "Hufflepuff";
 } 
 }
 function filterRav(){
-  const onlyRav = allStudents.filter(displayRav);
+  let onlyRav = allStudents.filter(displayRav);
   displayList(onlyRav)
+  //filter counter
+  document.querySelector(".ravCount").textContent = `Ravenclaw (${onlyRav.length})`;
   function displayRav(student){
   return student.house === "Ravenclaw";
 } 
 }
 function filterAll(){
 displayList(allStudents)
+//filter counter
+document.querySelector(".totalCount").textContent = `Total (${allStudents.length})`;
 }
 
 /* ---------------------------------------------LISTS------------------------------------------------------------------------------- */
@@ -178,6 +191,7 @@ function displayStudent(student) {
   differentType(student);
 })
  //Expel a student:
+ 
  document.querySelector(".expelCount").textContent = `(${expelledList.length})`;
  studentCopy.querySelector(".expell").addEventListener("click", function () {
  expelStudent(student);
@@ -186,6 +200,18 @@ function displayStudent(student) {
  studentCopy.querySelector(".studentsFull").textContent = student.newName;
  studentCopy.querySelector(".houseName").textContent = student.house;
  studentCopy.querySelector(".studentPic").src = `images/${student.lastName.toLowerCase() + "_" + student.firstName[0].substring(0, 1).toLowerCase() + ".png"}`;
+ //------- fix images
+  if (student.firstName == "Padma") {
+    studentCopy.querySelector(".studentPic").src = "images/" + student.lastName.toLowerCase() + "_" + "padme" + ".png";
+  } else if (student.lastName == "Patil") {
+    studentCopy.querySelector(".studentPic").src = "images/" + student.lastName.toLowerCase() + "_" + student.firstName.toLowerCase() + ".png";
+  } else if (student.firstName == "Leanne") {
+    studentCopy.querySelector(".studentPic").src = "images/" + "li_s" +  ".png";
+  } else if (student.lastName == "Finch-fletchley") {
+    studentCopy.querySelector(".studentPic").src = "images/" + "fletchley" + "_" + student.firstName.substring(0, 1).toLowerCase() + ".png";
+  } else {
+    studentCopy.querySelector(".studentPic").src = "images/" + student.lastName.toLowerCase() + "_" + student.firstName[0].substring(0, 1).toLowerCase() + ".png";
+  }
  
  //-------------------MODAL--------------------
   studentCopy.querySelector("button").addEventListener("click", function(){
@@ -200,6 +226,19 @@ function displayStudent(student) {
   document.querySelector(".modalPic").src = `images/${student.lastName.toLowerCase() + "_" + student.firstName[0].substring(0, 1).toLowerCase() + ".png"}`;
   document.querySelector(".modalCrest").src = `crest/${student.house + ".png"}`; 
   //document.querySelector("#imagePrefect").src = `prefect/${"prefect_"+ student.house + ".png"}`;
+  //------- fix images modal
+  if (student.firstName == "Padma") {
+    document.querySelector(".modalPic").src = "images/" + student.lastName.toLowerCase() + "_" + "padme" + ".png";
+  } else if (student.lastName == "Patil") {
+    document.querySelector(".modalPic").src = "images/" + student.lastName.toLowerCase() + "_" + student.firstName.toLowerCase() + ".png";
+  } else if (student.firstName == "Leanne") {
+    document.querySelector(".modalPic").src = "images/" + "li_s" +  ".png";
+  } else if (student.lastName == "Finch-fletchley") {
+    document.querySelector(".modalPic").src = "images/" + "fletchley" + "_" + student.firstName.substring(0, 1).toLowerCase() + ".png";
+  } else {
+    document.querySelector(".modalPic").src = "images/" + student.lastName.toLowerCase() + "_" + student.firstName[0].substring(0, 1).toLowerCase() + ".png";
+  }
+
   console.log(student.star)   
        //show PREFECT or not in modal:
        //const prefectSymbol = document.querySelector("#imagePrefect");
@@ -420,13 +459,9 @@ function sortHouse(){
     console.log(allStudents.filter(prefects=> prefects.star == true ));
     
   }
-  
-
   displayList(allStudents)
-
  
 }
-console.log(prefects)
 
 /* -----------------------------------------------------------------------EXPELLED----------------------------------------------------------------------------------- */
 
@@ -493,25 +528,25 @@ const element = document.querySelector(".hackTheSystem");
 typewriter(element, done);
 
 function done(){
-console.log("Done")
+//console.log("Done")
 }
 
 function typewriter(element, callback){ 
 let sentence = document.querySelector(".hackTheSystem").textContent;
-console.log(sentence)
+//console.log(sentence)
 let counter = 0;
-console.log(counter)
+//console.log(counter)
 let getLetter = sentence[0];
-console.log(getLetter)
+//console.log(getLetter)
 displayAll();
 
 function displayAll (){
 //show 1st letter, 2nd, 3rd....
-console.log(sentence.substring(0, counter+1))
-console.log(sentence.substring(0, counter+2))
-console.log(sentence.substring(0, counter+3))
+//console.log(sentence.substring(0, counter+1))
+//console.log(sentence.substring(0, counter+2))
+//console.log(sentence.substring(0, counter+3))
 let oneEach = sentence.substring(0, counter+1);
-console.log(oneEach)
+//console.log(oneEach)
 //hide the text first
 element.textContent = "";
 element.textContent = oneEach;
