@@ -185,6 +185,8 @@ function displayStudent(student) {
  //Overview: 
  studentCopy.querySelector(".studentsFull").textContent = student.newName;
  studentCopy.querySelector(".houseName").textContent = student.house;
+ studentCopy.querySelector(".studentPic").src = `images/${student.lastName.toLowerCase() + "_" + student.firstName[0].substring(0, 1).toLowerCase() + ".png"}`;
+ 
  //-------------------MODAL--------------------
   studentCopy.querySelector("button").addEventListener("click", function(){
   const modalOpen = document.querySelector(".modal-background");
@@ -192,7 +194,6 @@ function displayStudent(student) {
   modalOpen.classList.remove("hide");  
   //before: const houseName = document.querySelector(".modal-house");
   document.querySelector("#modal-content").setAttribute("data-house", student.house);
-  document.querySelector(".modalHouseName").textContent = student.house;
   document.querySelector(".modalStudentsName").textContent = `First name: ${student.firstName}`;
   document.querySelector(".modalStudentsMiddle").textContent = `Middle name: ${student.middleName}`;
   document.querySelector(".modalStudentsLast").textContent = `Last name: ${student.lastName}`;
@@ -482,4 +483,43 @@ function closeModal() {
 function selectTheme(){
   document.querySelector("body").setAttribute("houseStyle", this.value);
   console.log(selectTheme)
+}
+
+
+/* ---------------------------------------------TYPEWRITER------------------------------------------------------------------------------- */
+
+
+const element = document.querySelector(".hackTheSystem");
+typewriter(element, done);
+
+function done(){
+console.log("Done")
+}
+
+function typewriter(element, callback){ 
+let sentence = document.querySelector(".hackTheSystem").textContent;
+console.log(sentence)
+let counter = 0;
+console.log(counter)
+let getLetter = sentence[0];
+console.log(getLetter)
+displayAll();
+
+function displayAll (){
+//show 1st letter, 2nd, 3rd....
+console.log(sentence.substring(0, counter+1))
+console.log(sentence.substring(0, counter+2))
+console.log(sentence.substring(0, counter+3))
+let oneEach = sentence.substring(0, counter+1);
+console.log(oneEach)
+//hide the text first
+element.textContent = "";
+element.textContent = oneEach;
+++counter;
+if (sentence.length> counter) {
+setTimeout(displayAll, 150)
+} else {
+callback();
+}
+}
 }
