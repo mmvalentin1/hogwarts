@@ -224,7 +224,7 @@ function displayStudent(student) {
   document.querySelector(".modalStudentsMiddle").textContent = `Middle name: ${student.middleName}`;
   document.querySelector(".modalStudentsLast").textContent = `Last name: ${student.lastName}`;
   document.querySelector(".modalPic").src = `images/${student.lastName.toLowerCase() + "_" + student.firstName[0].substring(0, 1).toLowerCase() + ".png"}`;
-  document.querySelector(".modalCrest").src = `crest/${student.house + ".png"}`; 
+  document.querySelector(".modalCrest").src = `crest/${student.house.substring(0,1).toLowerCase() + student.house.substring(1,  ).toLowerCase() + ".png"}`; 
   //document.querySelector("#imagePrefect").src = `prefect/${"prefect_"+ student.house + ".png"}`;
   //------- fix images modal
   if (student.firstName == "Padma") {
