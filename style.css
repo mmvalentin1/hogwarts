@@ -1,7 +1,7 @@
 :root {
   --h1Color: black;
   --primary-color: white;
-  --button: white;
+  --button: rgba(255,255,255, 0.7);
   --background: url(img_other/back1.jpg);
 }
 
@@ -18,7 +18,7 @@
 }
 
 body {
-margin: 2em;
+margin: 1em;
 background-color: var(--primary-color);
 background-image: var(--background);
 }
@@ -27,22 +27,25 @@ h1 {
   color: var(--h1Color);
   font-family: 'Cinzel', serif;
   text-align: center;
-  font-size: 35px;
-  padding: 30px;
+  font-size: 45px;
+  font-weight: 100;
+  letter-spacing: 10px;
+  padding: 40px;
   background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2)
 }
 
 p {
   font-family: 'Quattrocento', serif;
 }
 
+
 article p {
   align-items: center;
   color: var(--h1Color);
+  font-size: 14px;
 }
-
-
 
 #studentsMain article{
   align-items: center;
@@ -53,17 +56,18 @@ article p {
 
 select#theme {
   background-color: var(--button);
-  border: 3px solid;
+  border: 2px solid;
   border-color: var(--h1Color);
   font-family: 'Quattrocento', serif;
   padding: 5px;
+  font-size: inherit;
 }
 
 #theme-changer {
   color: var(--h1Color);
   font-family: 'Quattrocento', serif;
-  font-size: 20px;
-  padding: 20px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 article {
@@ -76,8 +80,10 @@ article {
   float: right;
   border: 1px solid;
   border-color: var(--h1Color);
-  font-family: 'Quattrocento', serif;
+  font-family: 'Cinzel', serif;
   padding: 5px;
+  font-size: 16px;
+  background-color: rgba(255,255,255, 0.7);
 }
 
 /* ****** PREFECT ****** */
@@ -157,10 +163,12 @@ article {
   float: right;
   font-family: 'Cinzel', serif;
   font-weight: bold;
-  border-width: 1px;
   color: white;
   background-color: transparent;
   font-size: 30px;
+  padding: 1px 6px;
+  border-width: 2px;
+  border-style: outset;
 }
 /*-------------------------------SORTING---------------------------------------------*/
 
@@ -170,26 +178,32 @@ article {
   background-color: transparent;
   font-size: 15px;
 }
+.sortBy {
+  font-size: 16px;
+  font-family: 'Cinzel', serif;
+  font-weight: 100;
+  background-color: rgba(255,255,255, 0.8);
+  padding: 10px;
+  color: black;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2);
+}
 /*-------------------------------FILTER---------------------------------------------*/
 
 [data-action] {
   cursor: pointer;
   border: none;
-  background-color: transparent;
-  padding: 1px 6px;
-  border-width: 2px;
-  border-style: outset;
 }
 
 .buttonFilter{
   height: 150px;
   width: auto;
-
 }
-
+.filter{
+  background-color: transparent;
+}
 #filters{
   text-align: center;
-  padding: 2em;
+  border: none;
 }
 
 .filterTitle{
@@ -197,6 +211,42 @@ article {
   font-weight: bold;
 }
 
+.filterTitle span{
+  padding: 10px;
+  background-color: rgba(255,255,255, 0.8);
+  padding: 10px;
+  color: black;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2);
+  font-family: 'Cinzel', serif;
+  font-weight: 100;
+}
+/*-------------------------------EXPELLED---------------------------------------------*/
+#expelled{
+  display: inline-block;
+  margin: 50px;
+  vertical-align: bottom;
+}
+
+button.restore{
+  font-size: 16px;
+  font-weight: 100;
+  font-family: 'Cinzel', serif;
+  background-color: rgba(255,255,255, 0.8);
+  padding: 10px;
+  color: black;
+  border-width: 0;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2)
+}
+
+p.showExpelled{
+  font-size: 16px;
+  font-family: 'Cinzel', serif;
+  font-weight: 100;
+  background-color: rgba(255,255,255, 0.8);
+  padding: 10px;
+  color: black;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2)
+}
 
 /*-------------------------------GRID---------------------------------------------*/
 
@@ -227,21 +277,26 @@ article {
   background-color: var(--primary-color);
   color: var(--h1Color);
   margin: 10% auto;
-  width: 50%;
-  padding: 20px;
+  width: 30%;
+  padding: 10px;
   box-shadow: 0 3px 7px rgba(0,0,0,.25);
   justify-items: center;
-
-display: grid;
+  align-items: center;
+  display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: 
-  "modalCrest  modalName"
-  "modalCrest  modalMiddle"
-  "modalCrest modalLast"
-  "modalCrest modalPic"
-  "modalHouse  modalGender";
+  "modalCrest  modalPic"
+"modalName modalName"
+"modalMiddle modalMiddle"
+"modalLast modalLast"
+"modalPrefect modalExpelled";
 }
-
+.modalPrefect{
+  grid-area: modalPrefect;
+}
+.modalExpelled{
+  grid-area: modalExpelled;
+}
 .modalCrest {
   grid-area: modalCrest;
   height: 200px;
@@ -262,9 +317,7 @@ grid-area: modalLast;
 .modalGender {
   grid-area: modalGender;
 }
-.modalHouseName {
-  grid-area: modalHouse;
-}
+
 .modalPic {
   grid-area: modalPic;
 }

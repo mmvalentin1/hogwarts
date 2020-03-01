@@ -194,7 +194,6 @@ function displayStudent(student) {
   modalOpen.classList.remove("hide");  
   //before: const houseName = document.querySelector(".modal-house");
   document.querySelector("#modal-content").setAttribute("data-house", student.house);
-  document.querySelector(".modalHouseName").textContent = student.house;
   document.querySelector(".modalStudentsName").textContent = `First name: ${student.firstName}`;
   document.querySelector(".modalStudentsMiddle").textContent = `Middle name: ${student.middleName}`;
   document.querySelector(".modalStudentsLast").textContent = `Last name: ${student.lastName}`;
