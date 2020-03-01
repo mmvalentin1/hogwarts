@@ -204,6 +204,7 @@ article {
 #filters{
   text-align: center;
   border: none;
+  display: block;
 }
 
 .filterTitle{
@@ -221,11 +222,6 @@ article {
   font-weight: 100;
 }
 /*-------------------------------EXPELLED---------------------------------------------*/
-#expelled{
-  display: inline-block;
-  margin: 50px;
-  vertical-align: bottom;
-}
 
 button.restore{
   font-size: 16px;
@@ -246,6 +242,39 @@ p.showExpelled{
   padding: 10px;
   color: black;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2)
+}
+/*-------------------------------MAIN PANEL---------------------------------------------*/
+#expelled {
+  grid-area: expelled;
+  justify-self: left;
+}
+.counters{
+  grid-area: counter;
+  display: inline-grid;
+  justify-self: left;
+}
+#sorting{
+  grid-area: sorting;
+}
+
+#mainPanel{
+  justify-items: center;
+  display: grid;
+  grid-template-columns: 150px 200px 1fr;
+  grid-template-areas:
+  "counter sorting expelled";
+}
+
+
+/*-------------------------------COUNTERS---------------------------------------------*/
+
+.gryfCount, .slyCount, .huffCount, .ravCount, .totalCount {
+  background-color: rgba(255,255,255, 0.8);
+  padding: 10px;
+  color: black;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2);
+  font-family: 'Cinzel', serif;
+  font-weight: 100;
 }
 
 /*-------------------------------GRID---------------------------------------------*/
